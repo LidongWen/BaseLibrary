@@ -1,5 +1,6 @@
 package com.wenld.baselib.navigatbar;
 
+import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,6 +24,9 @@ public abstract class AbsNavigationBar<P extends AbsNavigationBar.Builder.AbsNav
     }
 
     private void createdAndBindView() {
+        if(mParams.mParent==null)
+            mParams.mParent= (ViewGroup)((ViewGroup)((Activity)mParams.mContext).getWindow().getDecorView()).getChildAt(0);
+
         navigationView = LayoutInflater.from(mParams.mContext).
                 inflate(bindLayoutId(), mParams.mParent, false);
 //        ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);

@@ -1,10 +1,9 @@
-package com.wenld.baselib.weight;
+package com.wenld.baselibrary;
 
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.wenld.baselib.R;
 import com.wenld.baselib.navigatbar.AbsNavigationBar;
 
 
