@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/root_view"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10.0dip">
+
+        <EditText
+            android:id="@+id/comment_editor"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:maxHeight="120.0dip"
+            android:padding="9.0dip"
+            android:textSize="16.0sp" />
+
+
+            <TextView
+                android:id="@+id/text_limit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10.0dip"
+                android:textSize="13.0sp"
+                android:visibility="invisible" />
+        </LinearLayout>
+</FrameLayout>
