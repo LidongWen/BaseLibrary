@@ -5,8 +5,6 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 /**
  * Created by wenld on 2017/2/26.
@@ -17,6 +15,7 @@ public abstract class AbsNavigationBar<P extends AbsNavigationBar.Builder.AbsNav
 
     private P mParams;
     View navigationView;
+    ViewHolder viewHolder;
 
     public AbsNavigationBar(P parent) {
         this.mParams = parent;
@@ -24,14 +23,16 @@ public abstract class AbsNavigationBar<P extends AbsNavigationBar.Builder.AbsNav
     }
 
     private void createdAndBindView() {
-        if(mParams.mParent==null)
-            mParams.mParent= (ViewGroup)((ViewGroup)((Activity)mParams.mContext).getWindow().getDecorView()).getChildAt(0);
+        if (mParams.mParent == null)
+            mParams.mParent = (ViewGroup) ((ViewGroup) ((Activity) mParams.mContext).getWindow().getDecorView()).getChildAt(0);
 
         navigationView = LayoutInflater.from(mParams.mContext).
                 inflate(bindLayoutId(), mParams.mParent, false);
 //        ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 //        navigationView.setLayoutParams(params);
         mParams.mParent.addView(navigationView, 0);
+
+        viewHolder = new ViewHolder(mParams.mContext, navigationView);
         applyVIew();
     }
 
@@ -46,10 +47,7 @@ public abstract class AbsNavigationBar<P extends AbsNavigationBar.Builder.AbsNav
      * @param text
      */
     protected void setText(int viewId, CharSequence text) {
-        TextView tv = findViewById(viewId);
-        if (tv != null) {
-            tv.setText(text);
-        }
+        viewHolder.setText(viewId, text);
     }
 
     /**
@@ -59,10 +57,7 @@ public abstract class AbsNavigationBar<P extends AbsNavigationBar.Builder.AbsNav
      * @param listener
      */
     protected void setOnClickListener(int viewId, View.OnClickListener listener) {
-        View view = findViewById(viewId);
-        if (view != null) {
-            view.setOnClickListener(listener);
-        }
+        viewHolder.setOnClickListener(viewId,listener);
     }
 
 
@@ -73,14 +68,11 @@ public abstract class AbsNavigationBar<P extends AbsNavigationBar.Builder.AbsNav
      * @param resourceId
      */
     protected void setImageResource(int viewId, int resourceId) {
-        ImageView imageView = findViewById(viewId);
-        if (imageView != null) {
-            imageView.setImageResource(resourceId);
-        }
+        viewHolder.setImageResource(viewId,resourceId);
     }
 
     protected <T extends View> T findViewById(int id) {
-        return (T) navigationView.findViewById(id);
+        return viewHolder.getView(id);
     }
 
 
