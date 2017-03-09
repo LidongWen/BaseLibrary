@@ -35,7 +35,7 @@ public abstract class AbsNavigationBar<P extends AbsNavigationBar.Builder.AbsNav
         applyVIew();
     }
 
-    private P getmParams() {
+    protected P getmParams() {
         return mParams;
     }
 
