@@ -29,11 +29,15 @@ public class OkHttpCallBack extends Callback<String> {
 
     @Override
     public void onError(Call call, Exception e, int id) {
+        if(callBack==null)
+            return;
         callBack.onError(e,id);
     }
 
     @Override
     public void onResponse(String response, int id) {
+        if(callBack==null)
+            return;
         callBack.onResponse(response,id);
     }
 }

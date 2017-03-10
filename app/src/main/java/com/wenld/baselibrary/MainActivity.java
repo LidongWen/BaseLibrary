@@ -1,7 +1,7 @@
 package com.wenld.baselibrary;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 
 import com.wenld.baselib.dialog.AlertDialog;
 
@@ -17,5 +17,7 @@ public class MainActivity extends AppCompatActivity {
                 .setContentView(R.layout.detail_comment_dialog).fullWidth()
                 .fromBottom(false)
                 .show();
+
+//        new HttpUtils().get().url("").headers()
     }
 }

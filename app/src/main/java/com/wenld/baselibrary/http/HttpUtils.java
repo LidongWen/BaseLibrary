@@ -19,26 +19,42 @@ import java.util.Map;
  */
 
 public class HttpUtils{
-    private static OkHttpEngine instance=new OkHttpEngine();
-    public static void postAPI(String url, Map<String, String> params, EngineCallBack callback) {
-        String content = Judgeurl(url);
-        instance.postAPI(content,params,callback);
+
+    public  HttpUtils(){
+
     }
 
-    public static void getAPI(String url, Map<String, String> params, EngineCallBack callback) {
-        String content = UrlBuide(url, params);
-        instance.getAPI(content,params,callback);
+    public HttpBuilder get(){
+        return new GetHttpBudilder();
+    }
+    public HttpBuilder post(){
+        return new PostHttpBudilder();
     }
 
-    public static void postAPI(String url, Map<String, String> params, Map<String, String> headers, EngineCallBack callback) {
-        String content = Judgeurl(url);
-        instance.postAPI(content,params,headers,callback);
-    }
 
-    public static void getAPI(String url, Map<String, String> params, Map<String, String> headers, EngineCallBack callback) {
-        String content = UrlBuide(url, params);
-        instance.getAPI(content,params,headers,callback);
-    }
+//    private static OkHttpEngine instance=new OkHttpEngine();
+//
+//
+//
+//    public static void postAPI(String url, Map<String, String> params, EngineCallBack callback) {
+//        String content = Judgeurl(url);
+//        instance.postAPI(content,params,callback);
+//    }
+//
+//    public static void getAPI(String url, Map<String, String> params, EngineCallBack callback) {
+//        String content = UrlBuide(url, params);
+//        instance.getAPI(content,params,callback);
+//    }
+//
+//    public static void postAPI(String url, Map<String, String> params, Map<String, String> headers, EngineCallBack callback) {
+//        String content = Judgeurl(url);
+//        instance.postAPI(content,params,headers,callback);
+//    }
+//
+//    public static void getAPI(String url, Map<String, String> params, Map<String, String> headers, EngineCallBack callback) {
+//        String content = UrlBuide(url, params);
+//        instance.getAPI(content,params,headers,callback);
+//    }
 
     public static void uploadAPI(String url, String uploadName, Map<String, String> headers, File file, EngineCallBack callback) {
 

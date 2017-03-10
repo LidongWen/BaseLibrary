@@ -17,5 +17,5 @@ public interface IHttpEngine {
     void getAPI(String url, Map<String, String> params, EngineCallBack callback);
     void postAPI(String url, Map<String, String> params, Map<String, String> headers,  EngineCallBack callback);
     void getAPI(String url, Map<String, String> params,Map<String, String> headers, EngineCallBack callback);
-    void uploadAPI(String url, String uploadName,  Map<String, String> params,Map<String, String> headers, File file, EngineCallBack callback);
+    void uploadAPI(String url, String uploadName,  Map<String, String> params,Map<String, String> headers, Map<String, File> files, EngineCallBack callback);
 }

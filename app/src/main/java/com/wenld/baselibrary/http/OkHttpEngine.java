@@ -17,7 +17,7 @@ import java.util.Map;
  */
 
 public class OkHttpEngine implements IHttpEngine {
-    private  OkHttpUtils instance = OkHttpUtils.getInstance();
+    private OkHttpUtils instance = OkHttpUtils.getInstance();
 
     @Override
     public void postAPI(String url, Map<String, String> params, EngineCallBack callback) {
@@ -57,9 +57,9 @@ public class OkHttpEngine implements IHttpEngine {
     }
 
     @Override
-    public void uploadAPI(String url, String uploadName,  Map<String, String> params,Map<String, String> headers, File file, EngineCallBack callback) {
+    public void uploadAPI(String url, String uploadName,  Map<String, String> params,Map<String, String> headers,  Map<String, File> files, EngineCallBack callback) {
         instance.post()
-                .addFile(uploadName, file.getName(), file)
+                .files(uploadName, files)
                 .url(url)
                 .params(headers)
                 .build()
