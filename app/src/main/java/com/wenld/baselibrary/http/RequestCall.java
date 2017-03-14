@@ -2,6 +2,7 @@ package com.wenld.baselibrary.http;
 
 import com.wenld.baselib.http.EngineCallBack;
 
+import java.io.File;
 import java.util.Map;
 
 import static com.wenld.baselibrary.http.HttpBuilder.REQUEST_GET;
@@ -37,5 +38,9 @@ public class RequestCall<T> {
 
     void getAPI(String url, Map<String, String> params, Map<String, String> headers, EngineCallBack callback) {
         instance.getAPI(url, params, headers, callback);
+    }
+
+    void uploadAPI(String url, String uploadName, Map<String, String> params, Map<String, String> headers, Map<String, File> files, EngineCallBack callback) {
+        instance.uploadAPI(url, uploadName, params, headers, files, callback);
     }
 }

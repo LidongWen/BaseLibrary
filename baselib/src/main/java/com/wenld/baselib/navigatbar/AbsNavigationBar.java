@@ -28,7 +28,7 @@ public abstract class AbsNavigationBar<P extends AbsNavigationBar.Builder.AbsNav
 
         navigationView = LayoutInflater.from(mParams.mContext).
                 inflate(bindLayoutId(), mParams.mParent, false);
-//        ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+//        ViewGroup.ViewLayoutParams params = new ViewGroup.ViewLayoutParams(ViewGroup.ViewLayoutParams.MATCH_PARENT, ViewGroup.ViewLayoutParams.WRAP_CONTENT);
 //        navigationView.setLayoutParams(params);
         mParams.mParent.addView(navigationView, 0);
 
