@@ -17,7 +17,6 @@ public class MainActivity extends AppCompatActivity {
                 .setContentView(R.layout.detail_comment_dialog).fullWidth()
                 .fromBottom(false)
                 .show();
-
 //        new HttpUtils().get().url("").headers()
     }
 }
