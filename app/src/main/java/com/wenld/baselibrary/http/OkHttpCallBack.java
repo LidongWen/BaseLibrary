@@ -1,10 +1,9 @@
 package com.wenld.baselibrary.http;
 
-import com.wenld.baselib.http.EngineCallBack;
+import com.wenld.baselib.http.callback.EngineCallBack;
 import com.zhy.http.okhttp.callback.Callback;
 
 import okhttp3.Call;
-import okhttp3.Response;
 
 /**
  * <p/>
@@ -15,29 +14,38 @@ import okhttp3.Response;
  * @Description
  */
 
-public class OkHttpCallBack extends Callback<String> {
-    EngineCallBack<String> callBack;
+public abstract class OkHttpCallBack<T> extends Callback<T> {
+    EngineCallBack callBack;
 
     public OkHttpCallBack(EngineCallBack callBack) {
         this.callBack = callBack;
     }
 
-    @Override
-    public String parseNetworkResponse(Response response, int id) throws Exception {
-        return response.body().string();
-    }
+//    @Override
+//    public T parseNetworkResponse(Response response, int id) throws Exception {
+//        try {
+//            Class<? super T> rawType;
+//            rawType = (Class<T>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
+//
+//            return (T) FastJsonUtil.getListObjects(response.body().string(), rawType);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            return null;
+//        }
+//    }
 
     @Override
     public void onError(Call call, Exception e, int id) {
-        if(callBack==null)
+        if (callBack == null)
             return;
-        callBack.onError(e,id);
+        callBack.onError(e, id);
     }
 
     @Override
-    public void onResponse(String response, int id) {
-        if(callBack==null)
+    public void onResponse(T response, int id) {
+        if (callBack == null)
             return;
-        callBack.onResponse(response,id);
+        callBack.onResponse(response, id);
     }
+
 }

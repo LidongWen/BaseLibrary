@@ -1,6 +1,11 @@
-package com.wenld.baselibrary.http;
+package com.wenld.baselib.http.builder;
 
+
+import com.wenld.baselib.http.request.RequestCall;
+
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -11,31 +16,19 @@ import java.util.Map;
  * http构建工具类
  */
 
-public class HttpBuilder<T extends HttpBuilder> {
+public abstract class HttpBuilder<T extends HttpBuilder> {
     public static int REQUEST_GET = 0x111;
     public static int REQUEST_POST = 0x222;
 
     protected String url;
     protected Object tag;
     protected Map<String, String> headers;
+
     protected Map<String, String> params;
+    protected List<FileInput> files = new ArrayList<>();
+
     protected int id;
     protected int request_Type;
-
-
-//    public  HttpBuilder() {
-//        this.request_Type = request_Type;
-//    }
-
-//    public T get() {
-//        request_Type = REQUEST_GET;
-//        return (T) this;
-//    }
-//
-//    public T post() {
-//        request_Type = REQUEST_POST;
-//        return (T) this;
-//    }
 
     public T id(int id) {
         this.id = id;
@@ -67,6 +60,34 @@ public class HttpBuilder<T extends HttpBuilder> {
     }
 
     public RequestCall build() {
-        return new RequestCall(this);
+        return new RequestCall((T)this);
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public Object getTag() {
+        return tag;
+    }
+
+    public Map<String, String> getHeaders() {
+        return headers;
+    }
+
+    public Map<String, String> getParams() {
+        return params;
+    }
+
+    public List<FileInput> getFiles() {
+        return files;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public int getRequest_Type() {
+        return request_Type;
     }
 }
