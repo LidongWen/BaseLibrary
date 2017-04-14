@@ -22,7 +22,7 @@ allprojects {
   如上所示 可以创建    `OkHttpEngine，VolleyHttpEngine ,HttpClientEngine...` 都是实现`IHttpEngine`接口
 
   在Appcation内 选择网络  
-   ```HttpUtils.initHttpEngine(new XXXXXXHttpEngine());```
+   ```HttpUtils.initHttpEngine(new XXXXXXHttpEngine());```   
   使用：
   ```
           //网络请求
