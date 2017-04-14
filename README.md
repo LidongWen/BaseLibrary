@@ -17,7 +17,7 @@ allprojects {
   ## 通用网络引擎
   **网络引擎框架，API调用不变，悄无声息切换底层网络技术**
   封装自己的调用方式，随时一键切换网络技术，实现网络技术的更新交替
-  <img width="320" height="500" src="https://github.com/LidongWen/BaseLibrary/blob/master/doc/httpUml.png"></img> 
+ ![](https://github.com/LidongWen/BaseLibrary/blob/master/doc/httpUml.png)
   
   如上所示 可以创建    `OkHttpEngine，VolleyHttpEngine ,HttpClientEngine...` 都是实现`IHttpEngine`接口
 
