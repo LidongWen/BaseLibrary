@@ -9,13 +9,10 @@ package com.wenld.baselib.http.callback;
  * @Description http引擎回调
  */
 
-public abstract class EngineCallBack<T> {
+public abstract  class EngineCallBack<T> {
     public abstract void onError(Exception e, int id);
 
     public abstract void onResponse(T response, int id);
-
-
-
     /**
      * UI Thread
      *
@@ -25,5 +22,4 @@ public abstract class EngineCallBack<T> {
     {
 
     }
-
 }

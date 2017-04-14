@@ -2,12 +2,11 @@ package com.wenld.baselib.http;
 
 import com.wenld.baselib.http.builder.GetHttpBuilder;
 import com.wenld.baselib.http.builder.PostHttpBuilder;
-import com.wenld.baselib.http.callback.EngineCallBack;
 import com.wenld.baselib.http.httpEngine.IHttpEngine;
 import com.wenld.baselib.http.request.RequestCall;
+import com.wenld.baselib.http.util.Platform;
 
-import java.io.File;
-import java.util.Map;
+import java.util.concurrent.Executor;
 
 /**
  * <p/>
@@ -19,8 +18,8 @@ import java.util.Map;
  */
 
 public class HttpUtils {
-
-    public HttpUtils() {
+    private Platform mPlatform;
+    private HttpUtils() {
 
     }
 
@@ -35,12 +34,13 @@ public class HttpUtils {
             synchronized (HttpUtils.class) {
                 if (mInstance == null) {
                     mInstance = new HttpUtils();
+
+                    mInstance.mPlatform = Platform.get();
                     RequestCall.setmHttpEngine(mHttpEngine);
                 }
             }
         }
         return mInstance;
-
     }
 
     public GetHttpBuilder get() {
@@ -51,10 +51,10 @@ public class HttpUtils {
         return new PostHttpBuilder();
     }
 
-    public void uploadAPI(String url, String uploadName, Map<String, String> headers, File file, EngineCallBack callback) {
-
+    public Executor getDelivery()
+    {
+        return mPlatform.defaultCallbackExecutor();
     }
-
 //
 //    public static String UrlBuide(String mUrl, Map<String, String> mParamsMap) {
 //        Uri.Builder builder = Uri.parse(mUrl).buildUpon();

@@ -2,11 +2,16 @@ package com.wenld.baselibrary;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Log;
 
 import com.wenld.baselib.dialog.AlertDialog;
 import com.wenld.baselib.http.HttpUtils;
 import com.wenld.baselib.http.callback.EngineCallBack;
+import com.wenld.baselib.http.callback.FileCallBack;
+import com.wenld.baselibrary.io.BaseDataModel;
+
+import java.io.File;
 
 public class MainActivity extends Activity {
     String TAG = "MainActivity1";
@@ -31,7 +36,7 @@ public class MainActivity extends Activity {
                 .addParam("controller", "appbox")
                 .addParam("method", "requestAppList")
                 .build()
-                .execute(new EngineCallBack<String>() {
+                .execute(new EngineCallBack<BaseDataModel>() {
 
                     @Override
                     public void onError(Exception e, int id) {
@@ -39,28 +44,28 @@ public class MainActivity extends Activity {
                     }
 
                     @Override
-                    public void onResponse(String response, int id) {
-                        Log.e(TAG, response);
+                    public void onResponse(BaseDataModel response, int id) {
+                        Log.e(TAG, response.toString());
                     }
                 });
 
-//        HttpUtils.getInstance().get().url("https://app.qipai.com/appCenter/version/appbox.apk")
-//                .build()
-//                .execute(new FileCallBack(Environment.getExternalStorageDirectory() + "/" + Environment.DIRECTORY_DOWNLOADS, getResources().getString(R.string.app_name)) {
-//                    @Override
-//                    public void onResponse(File response, int id) {
-//
-//                    }
-//
-//                    @Override
-//                    public void onError(Exception e, int id) {
-//
-//                    }
-//
-//                    @Override
-//                    public void inProgress(float progress, long total, int id) {
-//                        super.inProgress(progress, total, id);
-//                    }
-//                });
+        HttpUtils.getInstance().post().url("https://app.qipai.com/appCenter/version/appbox.apk")
+                .build()
+                .execute(new FileCallBack(Environment.getExternalStorageDirectory() + "/" + Environment.DIRECTORY_DOWNLOADS, getResources().getString(R.string.app_name)) {
+                    @Override
+                    public void onResponse(File response, int id) {
+
+                    }
+
+                    @Override
+                    public void onError(Exception e, int id) {
+
+                    }
+
+                    @Override
+                    public void inProgress(float progress, long total, int id) {
+                        super.inProgress(progress, total, id);
+                    }
+                });
     }
 }
