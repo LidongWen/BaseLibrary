@@ -1,23 +1,18 @@
 package com.wenld.baselibrary.http;
 
 
-import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v4.util.ArrayMap;
 
 import com.wenld.baselib.http.builder.FileInput;
 import com.wenld.baselib.http.callback.EngineCallBack;
-import com.wenld.baselib.http.callback.FileCallBack;
 import com.wenld.baselib.http.httpEngine.IHttpEngine;
-import com.wenld.baselibrary.FastJsonUtil;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.builder.PostFormBuilder;
 import com.zhy.http.okhttp.callback.Callback;
 import com.zhy.http.okhttp.request.RequestCall;
 
 import java.io.File;
-import java.lang.reflect.ParameterizedType;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -50,12 +45,9 @@ public class ZhyHttpEngine implements IHttpEngine {
         RequestCall requestCall = instance.post().url(url)
                 .params(params)
                 .build();
-        if (FileCallBack.class.isInstance(callback)) {
-            final FileCallBack finalCallBack = (FileCallBack) callback;
-            requestCall.execute(getFileCallBack(finalCallBack));
-        } else {
-            requestCall.execute(getCallback(callback));
-        }
+
+        requestCall.execute(getCallback(callback));
+
     }
 
     @Override
@@ -64,12 +56,9 @@ public class ZhyHttpEngine implements IHttpEngine {
                 .url(url)
                 .params(params)
                 .build();
-        if (FileCallBack.class.isInstance(callback)) {
-            final FileCallBack finalCallBack = (FileCallBack) callback;
-            requestCall.execute(getFileCallBack(finalCallBack));
-        } else {
-            requestCall.execute(getCallback(callback));
-        }
+
+        requestCall.execute(getCallback(callback));
+
     }
 
     @Override
@@ -78,12 +67,9 @@ public class ZhyHttpEngine implements IHttpEngine {
                 .headers(headers)
                 .params(params)
                 .build();
-        if (FileCallBack.class.isInstance(callback)) {
-            final FileCallBack finalCallBack = (FileCallBack) callback;
-            requestCall.execute(getFileCallBack(finalCallBack));
-        } else {
-            requestCall.execute(getCallback(callback));
-        }
+
+        requestCall.execute(getCallback(callback));
+
     }
 
 
@@ -110,10 +96,18 @@ public class ZhyHttpEngine implements IHttpEngine {
             builder.files(key, filess);
         }
         RequestCall requestCall = builder.build();
-        requestCall.execute(new Callback<String>() {
+        requestCall.execute(getCallback(callback));
+    }
+
+
+    @NonNull
+    private Callback<String> getCallback(final EngineCallBack callback) {
+        return new Callback<String>() {
             @Override
             public String parseNetworkResponse(Response response, int id) throws Exception {
-                return response.body().string();
+                callback.parseNetworkResponse(response, id);
+
+                return response.body().toString();
             }
 
             @Override
@@ -128,65 +122,8 @@ public class ZhyHttpEngine implements IHttpEngine {
 
             @Override
             public void onResponse(String response, int id) {
-                callback.onResponse(FastJsonUtil.getObject(response, (Class<?>) ((ParameterizedType) (callback.getClass().getGenericSuperclass())).getActualTypeArguments()[0]), id);
-            }
-        });
-    }
 
-    @NonNull
-    private com.zhy.http.okhttp.callback.FileCallBack getFileCallBack(final FileCallBack finalCallBack) {
-        return new com.zhy.http.okhttp.callback.FileCallBack(finalCallBack.destFileDir, finalCallBack.destFileName) {
-            @Override
-            public void onError(Call call, Exception e, int id) {
-                finalCallBack.onError(e, id);
-            }
-
-            @Override
-            public void onResponse(File response, int id) {
-                finalCallBack.onResponse(response, id);
-            }
-
-            @Override
-            public void inProgress(float progress, long total, int id) {
-                finalCallBack.inProgress(progress, total, id);
             }
         };
-    }
-
-
-    @NonNull
-    private Callback<String> getCallback(final EngineCallBack callback) {
-        return new Callback<String>() {
-            @Override
-            public String parseNetworkResponse(Response response, int id) throws Exception {
-                try {
-                    callback.onResponse(callback.parseNetworkResponse(response, id), id);
-                }catch (Exception e){
-                    callback.onError(e, id);
-                }
-                return "";
-            }
-
-            @Override
-            public void onError(Call call, Exception e, int id) {
-//                callback.onError(e, id);
-            }
-
-            @Override
-            public void onResponse(String response, int id) {
-//                callback.onResponse(FastJsonUtil.getObject(response, (Class<?>) ((ParameterizedType) (callback.getClass().getGenericSuperclass())).getActualTypeArguments()[0]), id);
-            }
-        };
-    }
-
-    public static String UrlBuide(String mUrl, Map<String, String> mParamsMap) {
-        Uri.Builder builder = Uri.parse(mUrl).buildUpon();
-        Iterator<String> it = mParamsMap.keySet().iterator();
-        while (it.hasNext()) {
-            String key = it.next();
-            String value = mParamsMap.get(key);
-            builder.appendQueryParameter(key, value);
-        }
-        return builder.toString();
     }
 }

@@ -6,10 +6,8 @@ import android.net.Uri;
 import com.wenld.baselib.http.HttpUtils;
 import com.wenld.baselib.http.builder.FileInput;
 import com.wenld.baselib.http.callback.EngineCallBack;
-import com.wenld.baselib.http.callback.FileCallBack;
 import com.wenld.baselib.http.httpEngine.IHttpEngine;
 import com.wenld.baselibrary.FastJsonUtil;
-import com.zhy.http.okhttp.OkHttpUtils;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -38,7 +36,6 @@ import okhttp3.Response;
  */
 
 public class OkHttpEngine implements IHttpEngine {
-            private OkHttpUtils instance = OkHttpUtils.getInstance();
     private OkHttpClient mOkHttpClient;
 
     public OkHttpEngine(OkHttpClient okHttpClient) {
@@ -158,27 +155,7 @@ public class OkHttpEngine implements IHttpEngine {
 
     @Override
     public void getAPI(String url, Map<String, String> params, Map<String, String> headers, EngineCallBack callback) {
-//        instance.get()
-//                .url(url)
-//                .params(params)
-//                .headers(headers)
-//                .build()
-//                .execute(new com.zhy.http.okhttp.callback.Callback<String>() {
-//                    @Override
-//                    public String parseNetworkResponse(Response response, int id) throws Exception {
-//                        return null;
-//                    }
-//
-//                    @Override
-//                    public void onError(Call call, Exception e, int id) {
-//
-//                    }
-//
-//                    @Override
-//                    public void onResponse(String response, int id) {
-//
-//                    }
-//                });
+
     }
 
     @Override

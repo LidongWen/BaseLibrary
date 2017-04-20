@@ -7,8 +7,7 @@ import android.util.Log;
 
 import com.wenld.baselib.dialog.AlertDialog;
 import com.wenld.baselib.http.HttpUtils;
-import com.wenld.baselib.http.callback.EngineCallBack;
-import com.wenld.baselib.http.callback.FileCallBack;
+import com.wenld.baselibrary.http.BaseApiCallback;
 import com.wenld.baselibrary.io.BaseDataModel;
 
 import java.io.File;
@@ -36,12 +35,7 @@ public class MainActivity extends Activity {
                 .addParam("controller", "appbox")
                 .addParam("method", "requestAppList")
                 .build()
-                .execute(new EngineCallBack<BaseDataModel>() {
-
-                    @Override
-                    public BaseDataModel parseNetworkResponse(Object response, int id) throws Exception {
-                        return null;
-                    }
+                .execute(new BaseApiCallback() {
 
                     @Override
                     public void onError(Exception e, int id) {

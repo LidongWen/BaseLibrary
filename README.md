@@ -50,22 +50,6 @@ allprojects {
                          ...
                       }
                   });
-  
-          HttpUtils.getInstance().post().url("https:xxxx.img")
-                  .build()
-                  .execute(new FileCallBack(directory, name) {
-                        public void onResponse(File response, int id) {
-                            ...
-                        }
-                        @Override
-                        public void onError(Exception e, int id) {
-                            ...
-                        }
-                        @Override
-                        public void inProgress(float progress, long total, int id) {
-                            ...
-                        }
-                  });
   ```
 
 > ### V 1.0.5
