@@ -32,6 +32,14 @@ allprojects {
                   .addParam("param2", "param2")
                   .build()
                   .execute(new EngineCallBack<BaseDataModel>() {
+                     public BaseDataModel parseNetworkResponse(Object response, int id){
+                            if(xx){
+                             onResponse(xx,xx);
+                            }else{
+                            onError(xx,xx);
+                            }
+                            ...
+                     }
                       @Override
                       public void onError(Exception e, int id) {
                          ...
@@ -60,7 +68,9 @@ allprojects {
                   });
   ```
 
-
+> ### V 1.0.5
+> 第一版 http 引擎bug修改
+> http引擎回调修改
 > ### V 1.0.4
 > 第一版 http 引擎使用
   > ### V 1.0.3

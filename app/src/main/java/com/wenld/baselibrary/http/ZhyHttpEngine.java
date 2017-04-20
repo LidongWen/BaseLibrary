@@ -159,17 +159,22 @@ public class ZhyHttpEngine implements IHttpEngine {
         return new Callback<String>() {
             @Override
             public String parseNetworkResponse(Response response, int id) throws Exception {
-                return response.body().string();
+                try {
+                    callback.onResponse(callback.parseNetworkResponse(response, id), id);
+                }catch (Exception e){
+                    callback.onError(e, id);
+                }
+                return "";
             }
 
             @Override
             public void onError(Call call, Exception e, int id) {
-                callback.onError(e, id);
+//                callback.onError(e, id);
             }
 
             @Override
             public void onResponse(String response, int id) {
-                callback.onResponse(FastJsonUtil.getObject(response, (Class<?>) ((ParameterizedType) (callback.getClass().getGenericSuperclass())).getActualTypeArguments()[0]), id);
+//                callback.onResponse(FastJsonUtil.getObject(response, (Class<?>) ((ParameterizedType) (callback.getClass().getGenericSuperclass())).getActualTypeArguments()[0]), id);
             }
         };
     }

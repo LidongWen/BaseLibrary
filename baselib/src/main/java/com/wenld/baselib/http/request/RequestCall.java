@@ -31,8 +31,9 @@ public class RequestCall implements IHttpEngine {
             if (httpBuilder.getRequest_Type() == HttpBuilder.REQUEST_POST) {
                 if (httpBuilder.getFiles() != null && httpBuilder.getFiles().size() > 0) {
                     uploadAPI(httpBuilder.getUrl(), httpBuilder.getParams(), httpBuilder.getHeaders(), httpBuilder.getFiles(), httpEngine);
+                } else {
+                    postAPI(httpBuilder.getUrl(), httpBuilder.getParams(), httpBuilder.getHeaders(), httpEngine);
                 }
-                postAPI(httpBuilder.getUrl(), httpBuilder.getParams(), httpBuilder.getHeaders(), httpEngine);
             }
         }
     }

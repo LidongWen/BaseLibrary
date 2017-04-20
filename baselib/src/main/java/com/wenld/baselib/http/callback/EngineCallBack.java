@@ -10,6 +10,10 @@ package com.wenld.baselib.http.callback;
  */
 
 public abstract  class EngineCallBack<T> {
+
+    public abstract T parseNetworkResponse(Object response, int id) throws Exception;
+
+
     public abstract void onError(Exception e, int id);
 
     public abstract void onResponse(T response, int id);
@@ -22,4 +26,6 @@ public abstract  class EngineCallBack<T> {
     {
 
     }
+
+
 }

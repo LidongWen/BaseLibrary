@@ -39,6 +39,11 @@ public class MainActivity extends Activity {
                 .execute(new EngineCallBack<BaseDataModel>() {
 
                     @Override
+                    public BaseDataModel parseNetworkResponse(Object response, int id) throws Exception {
+                        return null;
+                    }
+
+                    @Override
                     public void onError(Exception e, int id) {
                         Log.e(TAG, "异常");
                     }
@@ -55,6 +60,11 @@ public class MainActivity extends Activity {
                     @Override
                     public void onResponse(File response, int id) {
 
+                    }
+
+                    @Override
+                    public File parseNetworkResponse(Object response, int id) throws Exception {
+                        return null;
                     }
 
                     @Override
