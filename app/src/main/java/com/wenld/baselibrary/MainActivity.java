@@ -7,6 +7,7 @@ import android.util.Log;
 
 import com.wenld.baselib.dialog.AlertDialog;
 import com.wenld.baselib.http.HttpUtils;
+import com.wenld.baselib.http.callback.FileCallBack;
 import com.wenld.baselibrary.http.BaseApiCallback;
 import com.wenld.baselibrary.io.BaseDataModel;
 

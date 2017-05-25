@@ -52,6 +52,9 @@ allprojects {
                   });
   ```
 
+> ### V 1.0.6
+> MVP基类
+>
 > ### V 1.0.5
 > 第一版 http 引擎bug修改
 > http引擎回调修改
