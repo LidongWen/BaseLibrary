@@ -23,10 +23,11 @@ dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile project(':baselib')
     compile "com.android.support:appcompat-v7:${supportLibraryVersion}"
+    compile "com.android.support:design:${supportLibraryVersion}"
+    compile "com.android.support:support-v4:$rootProject.supportLibraryVersion"
     compile "com.android.support.constraint:constraint-layout:${constraintVersion}"
     compile 'com.squareup.okhttp3:okhttp:3.0.0-RC1'
     compile 'com.zhy:okhttputils:2.6.2'
     compile 'com.alibaba:fastjson:1.2.1'
-    compile 'com.android.support.constraint:constraint-layout:1.0.0-beta5'
     testCompile 'junit:junit:4.12'
 }
