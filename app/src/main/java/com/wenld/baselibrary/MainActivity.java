@@ -26,6 +26,7 @@ public class MainActivity extends Activity {
             dialog = new AlertDialog.Builder(this)
                     .setContentView(R.layout.detail_comment_dialog).fullWidth()
                     .fromBottom(false)
+                    .fullWidth()
                     .show();
         }
 

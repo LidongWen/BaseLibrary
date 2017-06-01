@@ -16,7 +16,7 @@
 
 package com.wenld.baselibrary.base;
 
-import com.wenld.baselib.fragment.BaseLazyFragment;
+import com.wenld.baselib.base.BaseLazyFragment;
 
 /**
  * Author:  Tau.Chen
@@ -24,30 +24,30 @@ import com.wenld.baselib.fragment.BaseLazyFragment;
  * Date:    15/7/22
  * Description:
  */
-public abstract class BaseFragment extends BaseLazyFragment implements IOpertionView {
+public abstract class BaseFragment extends BaseLazyFragment /*implements IOpertionView*/ {
 
-    @Override
-    public void showError(String msg) {
-//        toggleShowError(true, msg, null);
-    }
-
-    @Override
-    public void showException(String msg) {
-//        toggleShowError(true, msg, null);
-    }
-
-    @Override
-    public void showNetError() {
-//        toggleNetworkError(true, null);
-    }
-
-    @Override
-    public void showLoading(String msg) {
-//        toggleShowLoading(true, null);
-    }
-
-    @Override
-    public void hideLoading() {
-//        toggleShowLoading(false, null);
-    }
+//    @Override
+//    public void showError(String msg) {
+////        toggleShowError(true, msg, null);
+//    }
+//
+//    @Override
+//    public void showException(String msg) {
+////        toggleShowError(true, msg, null);
+//    }
+//
+//    @Override
+//    public void showNetError() {
+////        toggleNetworkError(true, null);
+//    }
+//
+//    @Override
+//    public void showLoading(String msg) {
+////        toggleShowLoading(true, null);
+//    }
+//
+//    @Override
+//    public void hideLoading() {
+////        toggleShowLoading(false, null);
+//    }
 }

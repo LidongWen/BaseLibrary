@@ -1,4 +1,4 @@
-package com.wenld.baselib.fragment;
+package com.wenld.baselib.base;
 
 import android.app.Activity;
 import android.content.Context;
@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,16 +22,10 @@ import java.lang.reflect.Field;
  * @Description
  */
 
-public abstract class BaseLazyFragment extends Fragment {
+public abstract class BaseLazyFragment <P extends BasePresenter>  extends Fragment  implements BaseIView{
 
     protected String TAG_LOG = null;
-
-    /**
-     * Screen information
-     */
-    protected int mScreenWidth = 0;
-    protected int mScreenHeight = 0;
-    protected float mScreenDensity = 0.0f;
+    protected P basePresenter;
 
     /**
      * context
@@ -70,17 +63,11 @@ public abstract class BaseLazyFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        initViewsAndEvents(view);
-
-//        if (null != getLoadingTargetView()) {
-//            mVaryViewHelperController = new VaryViewHelperController(getLoadingTargetView());
-//        }
-        DisplayMetrics displayMetrics = new DisplayMetrics();
-        getActivity().getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
-
-        mScreenDensity = displayMetrics.density;
-        mScreenHeight = displayMetrics.heightPixels;
-        mScreenWidth = displayMetrics.widthPixels;
+        initView(view);
+        basePresenter = initPresent();
+        if (null != basePresenter) {
+            basePresenter.attachedView(this);
+        }
     }
 
     @Override
@@ -96,11 +83,8 @@ public abstract class BaseLazyFragment extends Fragment {
 
     @Override
     public void onDestroy() {
-        DetoryViewAndThing();
+
         super.onDestroy();
-//        if (isBindEventBusHere()) {
-//            EventBus.getDefault().unregister(this);
-//        }
     }
 
     @Override
@@ -205,13 +189,15 @@ public abstract class BaseLazyFragment extends Fragment {
     /**
      * init all views and add events
      */
-    protected abstract void initViewsAndEvents(View view);
+    protected abstract void initView(View view);
 
     /**
+     * 初始化Present
      *
+     * @author wangxj
+     * @version 2016/6/12
      */
-    protected abstract void DetoryViewAndThing();
-
+    protected abstract P initPresent();
 
     /**
      * get the support fragment manager

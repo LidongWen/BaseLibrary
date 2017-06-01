@@ -1,12 +1,12 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion "25.0.2"
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
+    buildToolsVersion rootProject.ext.android.buildToolsVersion
     defaultConfig {
+        minSdkVersion rootProject.ext.android.minSdkVersion
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
         applicationId "com.wenld.baselibrary"
-        minSdkVersion 15
-        targetSdkVersion 25
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -22,10 +22,11 @@ android {
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile project(':baselib')
-    compile 'com.android.support:appcompat-v7:25.1.1'
+    compile "com.android.support:appcompat-v7:${supportLibraryVersion}"
+    compile "com.android.support.constraint:constraint-layout:${constraintVersion}"
     compile 'com.squareup.okhttp3:okhttp:3.0.0-RC1'
     compile 'com.zhy:okhttputils:2.6.2'
     compile 'com.alibaba:fastjson:1.2.1'
-    compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha7'
+    compile 'com.android.support.constraint:constraint-layout:1.0.0-beta5'
     testCompile 'junit:junit:4.12'
 }
