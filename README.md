@@ -6,7 +6,7 @@
 >  - 万能 dialog
 >  - 万能popuwindow
 >  - 万能布局
->  - mvp 模板,以及模板生成工具
+>  - mvp Activity，MVPFragment 模板,以及模板生成工具
 > 
 
 #### 引用
@@ -32,7 +32,11 @@ allprojects {
  3. 使用：
   ![](https://github.com/LidongWen/BaseLibrary/blob/master/doc/template_2.png)  ![](https://github.com/LidongWen/BaseLibrary/blob/master/doc/template_3.png)
   
-  
+  1. [mvpFragment模板下载](https://github.com/LidongWen/BaseLibrary/blob/master/doc/MVP2Fragment.rar)
+  2. 解压到：../android-studio\plugins\android\lib\templates\other
+  3. 使用：
+   ![](https://github.com/LidongWen/BaseLibrary/blob/master/doc/template_mvp_1.png)
+
 
 > ### V 1.0.6
 > MVP基类
