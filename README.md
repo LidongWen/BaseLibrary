@@ -34,7 +34,7 @@ allprojects {
   
   1. [mvpFragment模板下载](https://github.com/LidongWen/BaseLibrary/blob/master/doc/MVP2Fragment.rar)
   2. 解压到：../android-studio\plugins\android\lib\templates\other
-  3. 使用：
+  3. 使用：  
    ![](https://github.com/LidongWen/BaseLibrary/blob/master/doc/template_mvp_1.png)
 
 
