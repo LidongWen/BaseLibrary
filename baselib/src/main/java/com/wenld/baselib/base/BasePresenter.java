@@ -7,12 +7,13 @@ package com.wenld.baselib.base;
  * github: https://github.com/LidongWen
  */
 
-public class BasePresenter<V extends BaseIView> {
-   protected V v;
-   public void attachedView(V v){
-       this.v=v;
-   }
-   public void deathView(){
-       v=null;
-   }
+public interface BasePresenter<V extends BaseIView, M> {
+
+//    public void attachedView(V v) {
+//        this.v = v;
+//    }
+//
+//    public void deathView() {
+//        v = null;
+//    }
 }

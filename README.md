@@ -1,4 +1,15 @@
 # BaseLibrary
+
+放一些基类的东西，几乎都是能帮助快速开发的。。。个人使用
+ 
+>  - 引用 
+>  - 万能 dialog
+>  - 万能popuwindow
+>  - 万能布局
+>  - mvp 模板,以及模板生成工具
+> 
+
+#### 引用
 ```
 allprojects {
 		repositories {
@@ -10,47 +21,18 @@ allprojects {
 
 ```
 	dependencies {
-	        compile 'com.github.LidongWen:BaseLibrary:1.0.4'
+	        compile 'com.github.LidongWen:BaseLibrary:1.0.6'
 	}
   ```
   
-  ## 通用网络引擎
-  **网络引擎框架，API调用不变，悄无声息切换底层网络技术**
-  封装自己的调用方式，随时一键切换网络技术，实现网络技术的更新交替
- ![](https://github.com/LidongWen/BaseLibrary/blob/master/doc/httpUml.png)
+#### mvpActivity模板下载以及使用
+ 1. [mvpActivity模板下载]( https://github.com/LidongWen/BaseLibrary/blob/master/doc/MVPActivity(New).rar);
+ 2. 解压在目录： ../android-studio\plugins\android\lib\templates\activities   
+  ![](https://github.com/LidongWen/BaseLibrary/blob/master/doc/template_1.png)
+ 3. 使用：
+  ![](https://github.com/LidongWen/BaseLibrary/blob/master/doc/template_2.png)  ![](https://github.com/LidongWen/BaseLibrary/blob/master/doc/template_3.png)
   
-  如上所示 可以创建    `OkHttpEngine，VolleyHttpEngine ,HttpClientEngine...` 都是实现`IHttpEngine`接口
-
-  在Appcation内 选择网络  
-   ```HttpUtils.initHttpEngine(new XXXXXXHttpEngine());```   
-  使用：
-  ```
-          //网络请求
-          HttpUtils.getInstance().post()
-                  .url("xxxxxx")
-                  .addParam("param1", "param1")
-                  .addParam("param2", "param2")
-                  .build()
-                  .execute(new EngineCallBack<BaseDataModel>() {
-                     public BaseDataModel parseNetworkResponse(Object response, int id){
-                            if(xx){
-                             onResponse(xx,xx);
-                            }else{
-                            onError(xx,xx);
-                            }
-                            ...
-                     }
-                      @Override
-                      public void onError(Exception e, int id) {
-                         ...
-                      }
   
-                      @Override
-                      public void onResponse(BaseDataModel response, int id) {
-                         ...
-                      }
-                  });
-  ```
 
 > ### V 1.0.6
 > MVP基类

@@ -1,5 +1,6 @@
 package com.wenld.baselib.base;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -11,21 +12,13 @@ import android.support.v7.app.AppCompatActivity;
  * github: https://github.com/LidongWen
  */
 
-public abstract class BaseActivity<P extends BasePresenter> extends AppCompatActivity implements BaseIView {
-    protected P basePresenter;
-
+public abstract class BaseActivity extends AppCompatActivity{
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(getLayoutId());
-        basePresenter = initPresent();
         initView();
         initListener();
-        if (null != basePresenter) {
-            basePresenter.attachedView(this);
-        }
-        onPrepared();
-
         ActivityManager.getAppManager().addActivity(this);
 
     }
@@ -38,9 +31,6 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
     @Override
     protected void onDestroy() {
         ActivityManager.getAppManager().finishActivity(this);
-        if (null != basePresenter) {
-            basePresenter.deathView();
-        }
         super.onDestroy();
     }
 //
@@ -96,18 +86,78 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
     protected abstract void initListener();
 
     /**
-     * 初始化Present
+     * startActivity
      *
-     * @author wangxj
-     * @version 2016/6/12
+     * @param clazz
      */
-    protected abstract P initPresent();
+    protected void readyGo(Class<?> clazz) {
+        Intent intent = new Intent(this, clazz);
+        startActivity(intent);
+    }
 
     /**
-     * 页面准备工作、流程
+     * startActivity with bundle
      *
-     * @author wangxj
-     * @version 2016/6/12
+     * @param clazz
+     * @param bundle
      */
-    protected abstract void onPrepared();
+    protected void readyGo(Class<?> clazz, Bundle bundle) {
+        Intent intent = new Intent(this, clazz);
+        if (null != bundle) {
+            intent.putExtras(bundle);
+        }
+        startActivity(intent);
+    }
+
+    /**
+     * startActivity then onFinish
+     *
+     * @param clazz
+     */
+    protected void readyGoThenKill(Class<?> clazz) {
+        Intent intent = new Intent(this, clazz);
+        startActivity(intent);
+        finish();
+    }
+
+    /**
+     * startActivity with bundle then onFinish
+     *
+     * @param clazz
+     * @param bundle
+     */
+    protected void readyGoThenKill(Class<?> clazz, Bundle bundle) {
+        Intent intent = new Intent(this, clazz);
+        if (null != bundle) {
+            intent.putExtras(bundle);
+        }
+        startActivity(intent);
+        finish();
+    }
+
+    /**
+     * startActivityForResult
+     *
+     * @param clazz
+     * @param requestCode
+     */
+    protected void readyGoForResult(Class<?> clazz, int requestCode) {
+        Intent intent = new Intent(this, clazz);
+        startActivityForResult(intent, requestCode);
+    }
+
+    /**
+     * startActivityForResult with bundle
+     *
+     * @param clazz
+     * @param requestCode
+     * @param bundle
+     */
+    protected void readyGoForResult(Class<?> clazz, int requestCode, Bundle bundle) {
+        Intent intent = new Intent(this, clazz);
+        if (null != bundle) {
+            intent.putExtras(bundle);
+        }
+        startActivityForResult(intent, requestCode);
+    }
 }

@@ -1,27 +1,32 @@
 package com.wenld.baselibrary;
 
-import android.app.Activity;
-import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 
+import com.wenld.baselib.base.BaseActivity;
 import com.wenld.baselib.dialog.AlertDialog;
 import com.wenld.baselib.http.HttpUtils;
 import com.wenld.baselib.http.callback.FileCallBack;
 import com.wenld.baselibrary.http.BaseApiCallback;
 import com.wenld.baselibrary.io.BaseDataModel;
+import com.wenld.baselibrary.test.TestActivity;
 
 import java.io.File;
 
-public class MainActivity extends Activity {
+public class MainActivity extends BaseActivity {
     String TAG = "MainActivity1";
     AlertDialog dialog;
+    Button btn;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected int getLayoutId() {
+        return R.layout.activity_main;
+    }
 
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+    @Override
+    protected void initView() {
         if (dialog == null) {
             dialog = new AlertDialog.Builder(this)
                     .setContentView(R.layout.detail_comment_dialog).fullWidth()
@@ -73,5 +78,17 @@ public class MainActivity extends Activity {
                         super.inProgress(progress, total, id);
                     }
                 });
+
+        btn = (Button) findViewById(R.id.btn);
+    }
+
+    @Override
+    protected void initListener() {
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                readyGo(TestActivity.class);
+            }
+        });
     }
 }

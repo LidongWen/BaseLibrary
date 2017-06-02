@@ -7,6 +7,6 @@ package com.wenld.baselib.base;
  * github: https://github.com/LidongWen
  */
 
-public interface BaseIView {
-
+public interface BaseIView<T> {
+    void setPresenter(T persenter);
 }

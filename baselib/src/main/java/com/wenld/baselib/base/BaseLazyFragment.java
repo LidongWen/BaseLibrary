@@ -22,10 +22,10 @@ import java.lang.reflect.Field;
  * @Description
  */
 
-public abstract class BaseLazyFragment <P extends BasePresenter>  extends Fragment  implements BaseIView{
+public abstract class BaseLazyFragment/* <P extends BasePresenter> */ extends Fragment {
 
     protected String TAG_LOG = null;
-    protected P basePresenter;
+//    protected P basePresenter;
 
     /**
      * context
@@ -64,10 +64,6 @@ public abstract class BaseLazyFragment <P extends BasePresenter>  extends Fragme
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         initView(view);
-        basePresenter = initPresent();
-        if (null != basePresenter) {
-            basePresenter.attachedView(this);
-        }
     }
 
     @Override
@@ -181,23 +177,12 @@ public abstract class BaseLazyFragment <P extends BasePresenter>  extends Fragme
      */
     protected abstract void onUserInvisible();
 
-//    /**
-//     * get loading target iView
-//     */
-//    protected abstract View getLoadingTargetView();
 
     /**
      * init all views and add events
      */
     protected abstract void initView(View view);
 
-    /**
-     * 初始化Present
-     *
-     * @author wangxj
-     * @version 2016/6/12
-     */
-    protected abstract P initPresent();
 
     /**
      * get the support fragment manager
@@ -258,82 +243,4 @@ public abstract class BaseLazyFragment <P extends BasePresenter>  extends Fragme
         startActivityForResult(intent, requestCode);
     }
 
-//    /**
-//     * show toast
-//     *
-//     * @param msg
-//     */
-//    protected void showToast(String msg) {
-//        if (null != msg && !StringUtils.isEmpty(msg)) {
-//            Snackbar.make(((Activity) mContext).getWindow().getDecorView(), msg, Snackbar.LENGTH_SHORT).show();
-//        }
-//    }
-//
-//    /**
-//     * toggle show loading
-//     *
-//     * @param toggle
-//     */
-//    protected void toggleShowLoading(boolean toggle, String msg) {
-//        if (null == mVaryViewHelperController) {
-//            throw new IllegalArgumentException("You must return a right target iView for loading");
-//        }
-//
-//        if (toggle) {
-//            mVaryViewHelperController.showLoading(msg);
-//        } else {
-//            mVaryViewHelperController.restore();
-//        }
-//    }
-//
-//    /**
-//     * toggle show empty
-//     *
-//     * @param toggle
-//     */
-//    protected void toggleShowEmpty(boolean toggle, String msg, View.OnClickListener onClickListener) {
-//        if (null == mVaryViewHelperController) {
-//            throw new IllegalArgumentException("You must return a right target iView for loading");
-//        }
-//
-//        if (toggle) {
-//            mVaryViewHelperController.showEmpty(msg, onClickListener);
-//        } else {
-//            mVaryViewHelperController.restore();
-//        }
-//    }
-//
-//    /**
-//     * toggle show error
-//     *
-//     * @param toggle
-//     */
-//    protected void toggleShowError(boolean toggle, String msg, View.OnClickListener onClickListener) {
-//        if (null == mVaryViewHelperController) {
-//            throw new IllegalArgumentException("You must return a right target iView for loading");
-//        }
-//
-//        if (toggle) {
-//            mVaryViewHelperController.showError(msg, onClickListener);
-//        } else {
-//            mVaryViewHelperController.restore();
-//        }
-//    }
-//
-//    /**
-//     * toggle show network error
-//     *
-//     * @param toggle
-//     */
-//    protected void toggleNetworkError(boolean toggle, View.OnClickListener onClickListener) {
-//        if (null == mVaryViewHelperController) {
-//            throw new IllegalArgumentException("You must return a right target iView for loading");
-//        }
-//
-//        if (toggle) {
-//            mVaryViewHelperController.showNetworkError(onClickListener);
-//        } else {
-//            mVaryViewHelperController.restore();
-//        }
-//    }
 }

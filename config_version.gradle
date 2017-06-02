@@ -8,6 +8,6 @@ ext {
     ]
 
     supportLibraryVersion = '23.4.0'
-    constraintVersion='1.0.0-alpha7'
+    constraintVersion='1.0.0-beta5'//'1.0.0-alpha7'
     guavaVersion = '18.0'
 }

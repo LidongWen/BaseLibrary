@@ -1,4 +1,4 @@
-package com.wenld.baselib.base2mvp;
+package com.wenld.baselib.base;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
