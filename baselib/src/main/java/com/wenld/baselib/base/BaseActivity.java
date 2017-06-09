@@ -12,10 +12,23 @@ import android.support.v7.app.AppCompatActivity;
  * github: https://github.com/LidongWen
  */
 
-public abstract class BaseActivity extends AppCompatActivity{
+public abstract class BaseActivity extends AppCompatActivity {
+
+    /**  是否禁止旋转屏幕 */
+    private boolean isAllowScreenRoate=false;
+    /** 是否允许全屏*/
+    private boolean mAllowFullScreen= true;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+//        if(!isAllowScreenRoate){
+//            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+//        }
+//        if(mAllowFullScreen){
+//            requestWindowFeature(Window.FEATURE_NO_TITLE);
+//        }
+
         setContentView(getLayoutId());
         initView();
         initListener();

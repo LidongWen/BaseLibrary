@@ -5,6 +5,8 @@
       <module fileurl="file://$PROJECT_DIR$/BaseLibrary.iml" filepath="$PROJECT_DIR$/BaseLibrary.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/baselib/baselib.iml" filepath="$PROJECT_DIR$/baselib/baselib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/weight/superitem/superitem.iml" filepath="$PROJECT_DIR$/weight/superitem/superitem.iml" />
+      <module fileurl="file://$PROJECT_DIR$/weight/weight.iml" filepath="$PROJECT_DIR$/weight/weight.iml" />
     </modules>
   </component>
 </project>

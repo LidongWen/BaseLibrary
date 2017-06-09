@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:siv="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
 
     android:layout_width="match_parent"
@@ -18,19 +19,84 @@
             android:background="?attr/colorPrimary"
             app:layout_scrollFlags="scroll|enterAlways|snap"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-            app:title="TestActivity"><!--     app:titleTextColor="@color/white"-->
+            app:title="TestActivity"
+            app:titleTextColor="#FFFFFF"><!--     -->
         </android.support.v7.widget.Toolbar>
     </android.support.design.widget.AppBarLayout>
 
-    <LinearLayout
+    <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:orientation="vertical"
         android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior" >
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="1111111111111111"/>
+        android:orientation="vertical"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-    </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <com.wenld.superitem.SuperItemView
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="20dp"
+                siv:sLeftTextString="帐号管理"
+                siv:sRightIconRes="@mipmap/ic_launcher_round" />
+
+            <com.wenld.superitem.SuperItemView
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="20dp"
+                siv:sBottomLineMargin="0dp"
+                siv:sLeftIconRes="@mipmap/ic_launcher_round"
+                siv:sLeftTextString="收货地址" />
+
+            <com.wenld.superitem.SuperItemView
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="20dp"
+                siv:sBottomLineMargin="0dp"
+                siv:sIsSingLines="true"
+                siv:sLeftIconRes="@mipmap/ic_launcher_round"
+                siv:sLeftTextString="起息时间"
+                siv:sRightTextString="立即起息" />
+
+            <com.wenld.superitem.SuperItemView
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                siv:sBottomLineMargin="0dp"
+                siv:sCenterTextString="10:20"
+                siv:sLeftTextColor="@color/colorAccent"
+                siv:sLeftTextString="188******8888"
+                siv:sRightTextString="100元" />
+
+            <com.wenld.superitem.SuperItemView
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                siv:sLeftBottomTextString="188****8888"
+                siv:sLeftIconRes="@color/colorAccent"
+                siv:sLeftTopTextString="张三" />
+
+            <com.wenld.superitem.SuperItemView
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                siv:sCenterTextString="中间"
+                siv:sLeftBottomTextColor2="@color/colorAccent"
+                siv:sLeftBottomTextString="可用余额"
+                siv:sLeftBottomTextString2="8888元"
+                siv:sLeftCheckBoxRes="@drawable/switch_check_box_selector"
+                siv:sLeftCheckBoxShow="true"
+                android:id="@+id/superItemVIew_test"
+                siv:sLeftIconRes="@mipmap/ic_launcher_round"
+                siv:sLeftTextColor="@color/colorPrimaryDark"
+                siv:sLeftCheckHeight="50dp"
+                siv:sLeftTextMarginLeft="10dp"
+                siv:sLeftTextString="左边"
+                siv:sLeftTopTextString="余额支付"
+                siv:sRightCheckBoxRes="@drawable/switch_check_box_selector"
+                siv:sRightCheckBoxShow="true"
+                siv:sRightIconRes="@mipmap/ic_launcher_round"
+                siv:sRightTextString="100元" />
+        </LinearLayout>
+
+    </android.support.v4.widget.NestedScrollView>
 </android.support.design.widget.CoordinatorLayout>
