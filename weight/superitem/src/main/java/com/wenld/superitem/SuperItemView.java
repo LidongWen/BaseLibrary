@@ -135,7 +135,6 @@ public class SuperItemView extends RelativeLayout {
 
     private int defaultColor = 0xFF373737;//文字默认颜色
 
-    private int backgroundColor;//背景颜色
     private int leftTVColor;//左边文字颜色
     private int leftTopTVColor;//左上文字颜色
     private int leftBottomTVColor;//左下文字颜色
@@ -208,6 +207,10 @@ public class SuperItemView extends RelativeLayout {
         defaultPadding = dip2px(context, 16);
         defaultSize = sp2px(context, 14);
         centerSpaceHeight = dip2px(context, 10);
+
+        TypedValue typedValue = new TypedValue();
+        getContext().getTheme().resolveAttribute(R.attr.colorPrimary, typedValue, true);
+        defaultColor = typedValue.data;
         getAttr(attrs);
 
         initLayout();
@@ -286,7 +289,6 @@ public class SuperItemView extends RelativeLayout {
         rightIconMarginRight = typedArray.getDimensionPixelSize(R.styleable.SuperItemView_sRightIconMarginRight, defaultPadding);
         rightCheckBoxMarginRight = typedArray.getDimensionPixelSize(R.styleable.SuperItemView_sRightCheckBoxMarginRight, defaultPadding);
         //////设置字体颜色////////
-        backgroundColor = typedArray.getColor(R.styleable.SuperItemView_sBackgroundColor, defaultBgColor);
         leftTVColor = typedArray.getColor(R.styleable.SuperItemView_sLeftTextColor, defaultColor);
         leftTopTVColor = typedArray.getColor(R.styleable.SuperItemView_sLeftTopTextColor, defaultColor);
         leftBottomTVColor = typedArray.getColor(R.styleable.SuperItemView_sLeftBottomTextColor, defaultColor);
@@ -433,7 +435,7 @@ public class SuperItemView extends RelativeLayout {
      */
     private void initSuperTextView() {
 
-        this.setBackgroundColor(backgroundColor);
+//        this.setBackgroundColor(backgroundColor);
 //        this.setOnClickListener(new OnClickListener() {
 //            @Override
 //            public void onClick(View view) {

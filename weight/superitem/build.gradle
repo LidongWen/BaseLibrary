@@ -1,5 +1,5 @@
 apply plugin: 'com.android.library'
-
+apply plugin: 'com.novoda.bintray-release'//添加
 android {
     compileSdkVersion rootProject.ext.android.compileSdkVersion
     buildToolsVersion rootProject.ext.android.buildToolsVersion
@@ -18,6 +18,10 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    lintOptions{
+        abortOnError false
+        warning 'InvalidPackage'
+    }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -31,4 +35,15 @@ dependencies {
     })
     compile "com.android.support:appcompat-v7:${supportLibraryVersion}"
     testCompile 'junit:junit:4.12'
+}
+
+//添加
+publish {
+    userOrg = 'wenld'
+    groupId = 'com.wenld'
+    artifactId = 'super-itemView'
+    publishVersion = '1.0.0'
+    desc = ' this is a common itemLayout View'
+    website = 'https://github.com/LidongWen/BaseLibrary/tree/master/weight'
+    licences = ['Apache-2.0']
 }
